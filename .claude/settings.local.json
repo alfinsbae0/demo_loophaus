@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm -v)",
+      "Bash(npm install *)",
+      "WebFetch(domain:loophaus.id)"
+    ]
+  }
+}

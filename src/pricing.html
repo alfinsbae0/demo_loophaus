@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {{> title-meta title="Pricing" }} {{> head-css}}
+  </head>
+
+  <body>
+    {{> navbar }}
+
+    <section
+      class="relative overflow-hidden bg-white lg:pt-46 md:pt-44 pt-30 lg:pb-24 pb-12"
+    >
+      <!-- Background Decorative Blurs -->
+      <div class="pointer-events-none absolute inset-0 z-10 overflow-hidden">
+        <div
+          class="absolute -top-[10%] left-[-10%] lg:h-125 md:h-100 h-80 lg:w-125 w-80 rounded-full bg-primary-1 blur-[100px]"
+        ></div>
+        <div
+          class="absolute inset-y-0 left-[20%] lg:w-[20%] w-[30%] h-[130%] bg-white blur-[50px]"
+        ></div>
+        <!-- Middle Yellow/Green Blur -->
+        <div
+          class="absolute -top-[20%] left-[30%] lg:h-150 md:h-100 h-80 lg:w-150 w-80 rounded-full bg-primary-2 blur-[120px]"
+        ></div>
+        <div
+          class="absolute inset-y-0 inset-x-0 mx-auto w-[12%] h-[130%] bg-white blur-[50px]"
+        ></div>
+        <!-- Top Right Green Blur -->
+        <div
+          class="absolute -top-[10%] right-[20%] lg:h-100 md:h-100 h-80 lg:w-100 w-80 rounded-full bg-primary-1 blur-[100px]"
+        ></div>
+        <div
+          class="absolute inset-y-0 right-[20%] w-[12%] h-[130%] bg-white blur-[50px]"
+        ></div>
+
+        <div
+          class="absolute -top-[20%] end-[-20%] lg:h-150 md:h-100 h-80 lg:w-150 w-80 rounded-full bg-primary-2 blur-[120px]"
+        ></div>
+      </div>
+
+      <div class="container-full relative z-20">
+        <!-- Section Heading -->
+        <h2
+          class="text-center lg:text-[100px] md:text-6xl text-[40px] font-bold text-default-900 mb-16 tracking-normal"
+        >
+          Choose your workspace plan
+        </h2>
+
+        <!-- Pricing Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Card 1: Day pass -->
+          <div class="p-2.5 bg-default-100/80">
+            <div class="flex flex-col h-full">
+              <div class="bg-white lg:p-6 p-3.5 lg:mb-10 mb-3.5">
+                <h3
+                  class="lg:text-2xl md:text-xl text-lg font-semibold text-default-900"
+                >
+                  Office Spaces
+                </h3>
+              </div>
+              <div
+                class="bg-default-100/70 lg:mx-6.5 mx-3.5 mb-6.5 grow flex flex-col justify-between"
+              >
+                <div class="lg:mb-7.5 md:mb-5 mb-2.5">
+                  <span
+                    class="lg:text-5xl text-2xl font-semibold text-default-900"
+                    >$25</span
+                  >
+                  <span class="text-xl font-medium text-default-900">/day</span>
+                </div>
+
+                <div class="mb-5 text-default-600 leading-relaxed text-lg">
+                  <span class="font-bold text-default-900">Perfect for:</span>
+                  Freelancers, remote workers, or travelers who need a workspace
+                  for the day.
+                </div>
+
+                <div class="grow">
+                  <h5 class="font-bold text-default-900 mb-6">
+                    What’s included:
+                  </h5>
+                  <ul class="space-y-3.75 lg:ps-12.5 ps-2.5">
+                    <li class="flex items-start gap-3 text-default-600">
+                      <span
+                        class="size-1.5 bg-primary-3 mt-2.5 shrink-0"
+                      ></span>
+                      <span class="font-normal"
+                        >Access to hot desks in common areas</span
+                      >
+                    </li>
+                    <li class="flex items-start gap-3 text-default-600">
+                      <span
+                        class="size-1.5 bg-primary-3 mt-2.5 shrink-0"
+                      ></span>
+                      <span class="font-normal"
+                        >High-speed Wi-Fi for seamless work</span
+                      >
+                    </li>
+                    <li class="flex items-start gap-3 text-default-600">
+                      <span
+                        class="size-1.5 bg-primary-3 mt-2.5 shrink-0"
+                      ></span>
+                      <span class="font-normal"
+                        >Complimentary coffee and tea</span
+                      >
+                    </li>
+                    <li class="flex items-start gap-3 text-default-600">
+                      <span
+                        class="size-1.5 bg-primary-3 mt-2.5 shrink-0"
+                      ></span>
+                      <span class="font-normal"
+                        >Access to lounge areas for informal meetings or
+                        breaks</span
+                      >
+                    </li>
+                    <li class="flex items-start gap-3 text-default-600">
+                      <span
+                        class="size-1.5 bg-primary-3 mt-2.5 shrink-0"
+                      ></span>
+                      <span class="font-normal">9 AM to 6 PM access</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="flex justify-center">
+                  <a
+                    href="#"
+                    class="md:mt-12 mt-5 inline-block bg-primary-4 hover:bg-primary-3 text-black font-medium px-5 py-3.5 transition-all text-center"
+                  >
+                    Book now
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-2.5 bg-default-100/80">
+            <div class="flex flex-col h-full">
+              <div class="bg-white lg:p-6 p-3.5 lg:mb-10 mb-3.5">
+                <h3
+                  class="lg:text-2xl md:text-xl text-lg font-semibold text-default-900"
+                >
+                  Meeting Room
+                </h3>
+              </div>
+              <div
+                class="bg-default-100/70 lg:mx-6.5 mx-3.5 mb-6.5 grow flex flex-col justify-between"
+              >
+                <div class="lg:mb-7.5 md:mb-5 mb-2.5">
+                  <span
+                    class="lg:text-5xl text-2xl font-semibold text-default-900"
+                    >$200</span
+                  >
+                  <span class="text-xl font-medium text-default-900"
+                    >/month</span
+                  >
+                </div>
+
+                <div class="mb-5 text-default-600 leading-relaxed text-lg">
+                  <span class="font-bold text-default-900">Perfect for:</span>
+                  Freelancers or entrepreneurs who need a flexible workspace
+                  without committing to a permanent desk.
+                </div>
+
+                <div class="grow">
+                  <h5 class="font-bold text-default-900 mb-6">
+                    What’s included:
+                  </h5>
+                  <ul class="space-y-3.75 lg:ps-12.5 ps-2.5">
+                    <li class="flex items-start gap-3 text-default-600">
+                      <span
+                        class="size-1.5 bg-primary-3 mt-2.5 shrink-0"
+                      ></span>
+                      <span class="font-normal"
+                        >Flexible seating in shared work areas</span
+                      >
+                    </li>
+                    <li class="flex items-start gap-3 text-default-600">
+                      <span
+                        class="size-1.5 bg-primary-3 mt-2.5 shrink-0"
+                      ></span>
+                      <span class="font-normal">High-speed Wi-Fi</span>
+                    </li>
+                    <li class="flex items-start gap-3 text-default-600">
+                      <span
+                        class="size-1.5 bg-primary-3 mt-2.5 shrink-0"
+                      ></span>
+                      <span class="font-normal"
+                        >5 hours/month of meeting room access</span
+                      >
+                    </li>
+                    <li class="flex items-start gap-3 text-default-600">
+                      <span
+                        class="size-1.5 bg-primary-3 mt-2.5 shrink-0"
+                      ></span>
+                      <span class="font-normal"
+                        >Access to community events and networking
+                        opportunities</span
+                      >
+                    </li>
+                    <li class="flex items-start gap-3 text-default-600">
+                      <span
+                        class="size-1.5 bg-primary-3 mt-2.5 shrink-0"
+                      ></span>
+                      <span class="font-normal"
+                        >24/7 access to the coworking space</span
+                      >
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="flex justify-center">
+                  <a
+                    href="#"
+                    class="md:mt-12 mt-5 inline-block bg-primary-4 hover:bg-primary-3 text-black font-medium px-5 py-3.5 transition-all text-center"
+                  >
+                    Book now
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Event Venue -->
+          <div class="p-2.5 bg-default-100/80">
+            <div class="flex flex-col h-full">
+              <div class="bg-white lg:p-6 p-3.5 lg:mb-10 mb-3.5">
+                <h3
+                  class="lg:text-2xl md:text-xl text-lg font-semibold text-default-900"
+                >
+                  Event Venue
+                </h3>
+              </div>
+              <div
+                class="bg-default-100/70 lg:mx-6.5 mx-3.5 mb-6.5 grow flex flex-col"
+              >
+                <div class="lg:mb-7.5 md:mb-5 mb-2.5">
+                  <span
+                    class="lg:text-5xl text-2xl font-semibold text-default-900"
+                    >$350</span
+                  >
+                  <span class="text-xl font-medium text-default-900"
+                    >/month</span
+                  >
+                </div>
+
+                <div class="mb-5 text-default-600 leading-relaxed text-lg">
+                  <span class="font-bold text-default-900">Perfect for:</span>
+                  Professionals or small teams that need a permanent workspace.
+                </div>
+
+                <div class="grow">
+                  <h5 class="font-bold text-default-900 mb-6">
+                    What’s included:
+                  </h5>
+                  <ul class="space-y-3.75 lg:ps-12.5 ps-2.5">
+                    <li class="flex items-start gap-3 text-default-600">
+                      <span
+                        class="size-1.5 bg-primary-3 mt-2.5 shrink-0"
+                      ></span>
+                      <span class="font-normal"
+                        >A dedicated desk is reserved exclusively for you</span
+                      >
+                    </li>
+                    <li class="flex items-start gap-3 text-default-600">
+                      <span
+                        class="size-1.5 bg-primary-3 mt-2.5 shrink-0"
+                      ></span>
+                      <span class="font-normal"
+                        >Personal locker for storing belongings</span
+                      >
+                    </li>
+                    <li class="flex items-start gap-3 text-default-600">
+                      <span
+                        class="size-1.5 bg-primary-3 mt-2.5 shrink-0"
+                      ></span>
+                      <span class="font-normal"
+                        >Unlimited access to meeting rooms</span
+                      >
+                    </li>
+                    <li class="flex items-start gap-3 text-default-600">
+                      <span
+                        class="size-1.5 bg-primary-3 mt-2.5 shrink-0"
+                      ></span>
+                      <span class="font-normal"
+                        >24/7 access to the coworking space</span
+                      >
+                    </li>
+                    <li class="flex items-start gap-3 text-default-600">
+                      <span
+                        class="size-1.5 bg-primary-3 mt-2.5 shrink-0"
+                      ></span>
+                      <span class="font-normal"
+                        >Printing, scanning, and business-class services</span
+                      >
+                    </li>
+                    <li class="flex items-start gap-3 text-default-600">
+                      <span
+                        class="size-1.5 bg-primary-3 mt-2.5 shrink-0"
+                      ></span>
+                      <span class="font-normal"
+                        >Invitations to exclusive community events</span
+                      >
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="flex justify-center">
+                  <a
+                    href="#"
+                    class="md:mt-12 mt-5 inline-block bg-primary-4 hover:bg-primary-3 text-black font-medium px-5 py-3.5 transition-all text-center"
+                  >
+                    Book now
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="lg:py-32.5 md:py-22.5 py-15 bg-default-950">
+      <div class="container-full">
+        <!-- Section Title -->
+        <div class="text-center lg:mb-24 mb-10">
+          <h2
+            class="text-4xl md:text-5xl lg:text-[76px] font-semibold text-white tracking-normal"
+          >
+            Hear from our happy members
+          </h2>
+        </div>
+
+        <!-- On desktop (lg), we use 5 columns. On tablet (md) 3, on mobile 1. -->
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 lg:gap-12.5 gap-7.5 items-stretch"
+        >
+          <!-- Card 1: Nurulita -->
+          <div class="flex flex-col bg-default-900 h-full">
+            <div class="p-7.5 flex flex-col items-center text-center grow">
+              <img
+                src="http://loophaus.id/wp-content/uploads/2019/07/cropped-ARKA-MEDIA-Lita-1.jpg"
+                alt="Nurulita"
+                class="w-20 h-20 object-cover rounded-full mb-5"
+              />
+              <p class="text-default-400 text-lg leading-relaxed">
+                "LoopHaus has a fun vibe playground, fresh environment and also
+                bring up the positive energy of me."
+              </p>
+            </div>
+            <div
+              class="p-2 bg-linear-to-t from-primary-1 via-secondary-1 to-default-800 text-center relative group"
+            >
+              <div class="bg-white p-3.5">
+                <h3 class="text-black font-bold text-lg mb-1.25">Nurulita</h3>
+                <div class="text-default-500 text-lg font-normal">
+                  Arka Media
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Daniel -->
+          <div class="flex flex-col bg-default-900 h-full">
+            <div class="p-7.5 flex flex-col items-center text-center grow">
+              <img
+                src="http://loophaus.id/wp-content/uploads/2019/07/cropped-Daniel-Gibby-1.jpg"
+                alt="Daniel"
+                class="w-20 h-20 object-cover rounded-full mb-5"
+              />
+              <p class="text-default-400 text-lg leading-relaxed">
+                "For me, LoopHaus is a playground. It is indeed a working space,
+                but more of a playground area."
+              </p>
+            </div>
+            <div
+              class="p-2 bg-linear-to-t from-primary-1 via-secondary-1 to-default-800 text-center relative group"
+            >
+              <div class="bg-white p-3.5">
+                <h3 class="text-black font-bold text-lg mb-1.25">Daniel</h3>
+                <div class="text-default-500 text-lg font-normal">Gibby</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Imelda -->
+          <div class="flex flex-col bg-default-900 h-full">
+            <div class="p-7.5 flex flex-col items-center text-center grow">
+              <img
+                src="http://loophaus.id/wp-content/uploads/2019/07/cropped-OMG-Imelda-2.jpg"
+                alt="Imelda"
+                class="w-20 h-20 object-cover rounded-full mb-5"
+              />
+              <p class="text-default-400 text-lg leading-relaxed">
+                "LoopHaus is not just a working space, but also a place for me
+                to grow, find inspirations."
+              </p>
+            </div>
+            <div
+              class="p-2 bg-linear-to-t from-primary-1 via-secondary-1 to-default-800 text-center relative group"
+            >
+              <div class="bg-white p-3.5">
+                <h3 class="text-black font-bold text-lg mb-1.25">Imelda</h3>
+                <div class="text-default-500 text-lg font-normal">
+                  OMG Consulting
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4: Michael -->
+          <div class="flex flex-col bg-default-900 h-full">
+            <div class="p-7.5 flex flex-col items-center text-center grow">
+              <img
+                src="http://loophaus.id/wp-content/uploads/2020/09/cropped-cropped-Instagram-October-2019-2-1.png"
+                alt="Michael"
+                class="w-20 h-20 object-cover rounded-full mb-5"
+              />
+              <p class="text-default-400 text-lg leading-relaxed">
+                "LoopHaus make things simple for us."
+              </p>
+            </div>
+            <div
+              class="p-2 bg-linear-to-t from-primary-1 via-secondary-1 to-default-800 text-center relative group"
+            >
+              <div class="bg-white p-3.5">
+                <h3 class="text-black font-bold text-lg mb-1.25">Michael</h3>
+                <div class="text-default-500 text-lg font-normal">
+                  Parentalk.id
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="lg:py-15 md:py-22.5 py-15">
+      <!-- Container for centering content -->
+    </section>
+
+    {{> footer }}
+  </body>
+</html>

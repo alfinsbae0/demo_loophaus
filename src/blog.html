@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {{> title-meta title="Blog" }} {{> head-css}}
+  </head>
+
+  <body>
+    {{> navbar }}
+
+    <script>
+      // Blog pagination
+      let currentPage =
+        parseInt(new URLSearchParams(window.location.search).get("page")) || 1;
+
+      // Blog data for both pages
+      const blogPages = {
+        1: [
+          {
+            id: 1,
+            category: "Events",
+            date: "November 19, 2024",
+            title: "How to thrive in a hybrid work environment",
+            image: "/images/event/blog-01.avif",
+          },
+          {
+            id: 2,
+            category: "Workshops",
+            date: "November 19, 2024",
+            title: "Choosing the perfect workspace for your team",
+            image: "/images/event/blog-02.avif",
+          },
+          {
+            id: 3,
+            category: "Productivity",
+            date: "November 19, 2024",
+            title: "Maximizing efficiency in shared spaces",
+            image: "/images/event/blog-03.avif",
+          },
+          {
+            id: 4,
+            category: "Networking",
+            date: "November 19, 2024",
+            title: "Building professional connections in coworking",
+            image: "/images/event/blog-04.avif",
+          },
+          {
+            id: 5,
+            category: "Team Dynamics",
+            date: "November 19, 2024",
+            title: "Building a productive and collaborative work culture",
+            image: "/images/event/blog-05.avif",
+          },
+          {
+            id: 6,
+            category: "Scalability",
+            date: "November 19, 2024",
+            title: "The flexibility of coworking for growing teams",
+            image: "/images/event/blog-06.avif",
+          },
+        ],
+        2: [
+          {
+            id: 7,
+            category: "Innovation",
+            date: "November 15, 2024",
+            title: "Fostering creativity in shared workspace environments",
+            image: "/images/event/blog-01.avif",
+          },
+          {
+            id: 8,
+            category: "Wellness",
+            date: "November 15, 2024",
+            title: "Work-life balance in modern coworking spaces",
+            image: "/images/event/blog-02.avif",
+          },
+          {
+            id: 9,
+            category: "Technology",
+            date: "November 15, 2024",
+            title: "Essential tech tools for remote teams",
+            image: "/images/event/blog-03.avif",
+          },
+          {
+            id: 10,
+            category: "Community",
+            date: "November 15, 2024",
+            title: "Creating community in coworking spaces",
+            image: "/images/event/blog-04.avif",
+          },
+          {
+            id: 11,
+            category: "Business",
+            date: "November 15, 2024",
+            title: "Cost-effective solutions for startups",
+            image: "/images/event/blog-05.avif",
+          },
+          {
+            id: 12,
+            category: "Future",
+            date: "November 15, 2024",
+            title: "The future of work is here",
+            image: "/images/event/blog-06.avif",
+          },
+        ],
+      };
+
+      document.addEventListener("DOMContentLoaded", function () {
+        renderBlogPosts();
+        updatePagination();
+      });
+
+      function renderBlogPosts() {
+        const blogGrid = document.querySelector("[data-blog-grid]");
+        if (!blogGrid) return;
+
+        const posts = blogPages[currentPage] || blogPages[1];
+        const blogHTML = posts
+          .map(
+            (post) => `
+          <a
+            href="blog-details.html"
+            class="relative group block bg-default-100 p-2.5 transition-shadow hover:bg-linear-to-b hover:from-secondary-2"
+          >
+            <div class="relative md:mb-5 mb-2.5 overflow-hidden aspect-4/3">
+              <img
+                src="${post.image}"
+                alt="${post.title}"
+                class="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-106"
+              />
+              <span
+                class="absolute top-4 start-4 text-sm bg-primary-2 text-default-800 px-2 py-0.5"
+              >${post.category}</span>
+            </div>
+            <div class="text-lg mb-1.25 text-default-600 font-normal">
+              ${post.date}
+            </div>
+            <h3 class="lg:text-2xl text-lg font-semibold text-black md:mb-5">
+              ${post.title}
+            </h3>
+          </a>
+        `,
+          )
+          .join("");
+
+        // Insert spacers and pagination at the end
+        const paginationHTML = `
+          <div class="lg:block hidden"></div>
+          <div class="text-center mt-4" data-page-indicator>${currentPage}/2</div>
+          <div class="flex gap-3">
+            <button
+              data-prev-btn
+              onclick="goToPage(1)"
+              class="flex items-center justify-center text-black gap-1 bg-primary-3 hover:bg-secondary-3 text-lg transition-all w-full py-3.5 px-5"
+            >
+              <i class="iconify lucide--chevron-left size-4 text-black"></i>
+              Previous
+            </button>
+            <button
+              data-next-btn
+              onclick="goToPage(2)"
+              class="flex items-center justify-center text-black gap-1 bg-primary-3 hover:bg-secondary-3 text-lg transition-all w-full py-3.5 px-5"
+            >
+              Next
+              <i class="iconify lucide--chevron-right size-4 text-black"></i>
+            </button>
+          </div>
+        `;
+
+        blogGrid.innerHTML = blogHTML + paginationHTML;
+      }
+
+      function updatePagination() {
+        const nextBtn = document.querySelector("[data-next-btn]");
+        const prevBtn = document.querySelector("[data-prev-btn]");
+
+        // Disable/enable buttons based on page
+        if (prevBtn) {
+          if (currentPage === 1) {
+            prevBtn.disabled = true;
+            prevBtn.style.opacity = "0.5";
+            prevBtn.style.cursor = "not-allowed";
+          } else {
+            prevBtn.disabled = false;
+            prevBtn.style.opacity = "1";
+            prevBtn.style.cursor = "pointer";
+          }
+        }
+
+        if (nextBtn) {
+          if (currentPage === 2) {
+            nextBtn.disabled = true;
+            nextBtn.style.opacity = "0.5";
+            nextBtn.style.cursor = "not-allowed";
+          } else {
+            nextBtn.disabled = false;
+            nextBtn.style.opacity = "1";
+            nextBtn.style.cursor = "pointer";
+          }
+        }
+      }
+
+      function goToPage(page) {
+        window.location.href = `blog.html?page=${page}`;
+      }
+    </script>
+
+    <section
+      class="relative overflow-hidden bg-white lg:pt-46 md:pt-44 pt-30 lg:pb-34 md:pb-20 pb-15"
+    >
+      <!-- Background Decorative Blurs -->
+      <div class="pointer-events-none absolute inset-0 z-10 overflow-hidden">
+        <div
+          class="absolute -top-[10%] left-[-10%] lg:h-125 md:h-100 h-80 lg:w-125 w-80 rounded-full bg-primary-1 blur-[100px]"
+        ></div>
+        <div
+          class="absolute inset-y-0 left-[20%] lg:w-[20%] w-[30%] h-[130%] bg-white blur-[50px]"
+        ></div>
+        <!-- Middle Yellow/Green Blur -->
+        <div
+          class="absolute -top-[20%] left-[30%] lg:h-150 md:h-100 h-80 lg:w-150 w-80 rounded-full bg-primary-2 blur-[120px]"
+        ></div>
+        <div
+          class="absolute inset-y-0 inset-x-0 mx-auto w-[12%] h-[130%] bg-white blur-[50px]"
+        ></div>
+        <!-- Top Right Green Blur -->
+        <div
+          class="absolute -top-[10%] right-[20%] lg:h-100 md:h-100 h-80 lg:w-100 w-80 rounded-full bg-primary-1 blur-[100px]"
+        ></div>
+        <div
+          class="absolute inset-y-0 right-[20%] w-[12%] h-[130%] bg-white blur-[50px]"
+        ></div>
+
+        <div
+          class="absolute -top-[20%] end-[-20%] lg:h-150 md:h-100 h-80 lg:w-150 w-80 rounded-full bg-primary-2 blur-[120px]"
+        ></div>
+      </div>
+
+      <div class="container-full relative z-10">
+        <!-- Section Heading -->
+        <h2
+          class="text-center lg:text-[80px] md:text-[54px] text-4xl font-bold text-default-900 md:mb-20 mb-14 tracking-normal"
+        >
+          Our blog
+        </h2>
+
+        <!-- Workspace Grid -->
+        <div
+          class="grid grid-cols-1 lg:gap-12.5 md:gap-7.5 gap-3.5 md:grid-cols-2 lg:grid-cols-3"
+          data-blog-grid
+        >
+          <!-- Blog posts will be rendered here by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    {{> footer }}
+  </body>
+</html>

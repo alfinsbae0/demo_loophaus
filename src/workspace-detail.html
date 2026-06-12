@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {{> title-meta title="Workspace Detail" }} {{> head-css}}
+  </head>
+
+  <body>
+    {{> navbar }}
+
+    <script>
+      // Workspace data
+      const workspaceData = {
+        1: {
+          type: "office-spaces",
+          name: "Office Spaces",
+          subtitle: "Premium workspace in the heart of Jakarta",
+          price: 350,
+          pricePeriod: "/month",
+          description:
+            "Our premium office spaces are designed for professionals and growing teams who demand excellence. Each workspace is thoughtfully designed with modern aesthetics and cutting-edge technology to ensure maximum productivity and comfort.",
+          description2:
+            "Located in a prime business district with easy access to public transportation, dining, and entertainment options. Perfect for companies looking to establish a strong market presence.",
+          images: [
+            "/images/workspace/1.avif",
+            "/images/workspace/2.avif",
+            "/images/workspace/3.avif",
+            "/images/workspace/4.avif",
+            "/images/workspace/5.avif",
+          ],
+
+          similar: [
+            {
+              id: 2,
+              name: "Meeting Room",
+              price: 200,
+              image: "/images/workspace/2.avif",
+            },
+            {
+              id: 3,
+              name: "Event Venue",
+              price: 500,
+              image: "/images/workspace/3.avif",
+            },
+          ],
+        },
+        2: {
+          type: "meeting-room",
+          name: "Meeting Room",
+          subtitle: "Flexible conference spaces for teams",
+          price: 200,
+          pricePeriod: "/month",
+          description:
+            "Our meeting rooms are equipped with state-of-the-art conferencing technology and comfortable seating. Perfect for client presentations, team meetings, and collaborative sessions.",
+          description2:
+            "With flexible booking options and professional settings, your meetings will leave a lasting impression. Available with full catering and technical support.",
+          images: [
+            "/images/workspace/2.avif",
+            "/images/workspace/1.avif",
+            "/images/workspace/3.avif",
+            "/images/workspace/4.avif",
+            "/images/workspace/5.avif",
+          ],
+
+          similar: [
+            {
+              id: 1,
+              name: "Office Spaces",
+              price: 350,
+              image: "/images/workspace/1.avif",
+            },
+            {
+              id: 3,
+              name: "Event Venue",
+              price: 500,
+              image: "/images/workspace/3.avif",
+            },
+          ],
+        },
+        3: {
+          type: "event-venue",
+          name: "Event Venue",
+          subtitle: "Spacious venue for events & gatherings",
+          price: 500,
+          pricePeriod: "/month",
+          description:
+            "Our event venue is the perfect setting for conferences, workshops, and networking events. With flexible layouts and modern amenities, we can accommodate events of any size.",
+          description2:
+            "Professional event management support, catering partnerships, and AV equipment included. Create memorable experiences in our stunning space.",
+          images: [
+            "/images/workspace/3.avif",
+            "/images/workspace/1.avif",
+            "/images/workspace/2.avif",
+            "/images/workspace/4.avif",
+            "/images/workspace/5.avif",
+          ],
+
+          similar: [
+            {
+              id: 1,
+              name: "Office Spaces",
+              price: 350,
+              image: "/images/workspace/1.avif",
+            },
+            {
+              id: 2,
+              name: "Meeting Room",
+              price: 200,
+              image: "/images/workspace/2.avif",
+            },
+          ],
+        },
+      };
+
+      // Get URL parameters
+      const params = new URLSearchParams(window.location.search);
+      const workspaceId = params.get("id") || "1";
+      const workspace = workspaceData[workspaceId];
+
+      console.log("Workspace ID:", workspaceId);
+      console.log("Workspace data:", workspace);
+
+      // Update page on load
+      document.addEventListener("DOMContentLoaded", function () {
+        console.log("DOM Loaded, updating content...");
+        if (workspace) {
+          // Update title
+          document.title = workspace.name + " - CoOffice";
+
+          // Update hero images
+          const mainImg = document.querySelector("[data-hero-main]");
+          const sideImg1 = document.querySelector("[data-hero-side-1]");
+          const sideImg2 = document.querySelector("[data-hero-side-2]");
+          const sideImg3 = document.querySelector("[data-hero-side-3]");
+          const sideImg4 = document.querySelector("[data-hero-side-4]");
+
+          if (mainImg) mainImg.src = workspace.images[0];
+          if (sideImg1) sideImg1.src = workspace.images[1];
+          if (sideImg2) sideImg2.src = workspace.images[2];
+          if (sideImg3) sideImg3.src = workspace.images[3];
+          if (sideImg4) sideImg4.src = workspace.images[4];
+
+          // Update content
+          const titleEl = document.querySelector("[data-workspace-title]");
+          const subtitleEl = document.querySelector(
+            "[data-workspace-subtitle]",
+          );
+          const descEl = document.querySelector("[data-workspace-description]");
+          const desc2El = document.querySelector(
+            "[data-workspace-description-2]",
+          );
+          const priceEl = document.querySelector("[data-workspace-price]");
+          const periodEl = document.querySelector("[data-workspace-period]");
+
+          if (titleEl) titleEl.textContent = workspace.name;
+          if (subtitleEl) subtitleEl.textContent = workspace.subtitle;
+          if (descEl) descEl.textContent = workspace.description;
+          if (desc2El) desc2El.textContent = workspace.description2;
+          if (priceEl) priceEl.textContent = "$" + workspace.price;
+          if (periodEl) periodEl.textContent = workspace.pricePeriod;
+
+          // Update similar workspaces
+          const similarContainer = document.querySelector(
+            "[data-similar-container]",
+          );
+          console.log("Similar container found:", !!similarContainer);
+          console.log("Similar data:", workspace.similar);
+
+          if (similarContainer) {
+            const html = workspace.similar
+              .map(
+                (w) => `
+              <a href="workspace-detail.html?id=${w.id}" class="group bg-white overflow-hidden hover:shadow-lg transition-shadow">
+                <div class="relative overflow-hidden aspect-4/3">
+                  <img
+                    src="${w.image}"
+                    alt="${w.name}"
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-106"
+                  />
+                </div>
+                <div class="p-5">
+                  <h3 class="text-xl font-bold text-default-900 mb-2.5">${w.name}</h3>
+                  <p class="text-default-600 text-sm mb-3.5">Flexible workspace solution</p>
+                  <div class="flex items-baseline gap-2">
+                    <span class="text-2xl font-bold text-primary-3">$${w.price}</span>
+                    <span class="text-default-600 text-sm">/month</span>
+                  </div>
+                </div>
+              </a>
+            `,
+              )
+              .join("");
+            similarContainer.innerHTML = html;
+            console.log("Similar workspaces rendered");
+          }
+        }
+      });
+    </script>
+
+    <!-- Hero Section -->
+    <section
+      class="relative overflow-hidden bg-white lg:pt-30 md:pt-25 pt-20 lg:pb-0 pb-0"
+    >
+      <div class="container-full">
+        <!-- Image Gallery -->
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mb-12.5"
+        >
+          <!-- Main Image -->
+          <div class="col-span-1 md:col-span-2 lg:col-span-2 lg:row-span-2">
+            <div class="relative overflow-hidden aspect-4/3 lg:aspect-square">
+              <img
+                data-hero-main
+                src="/images/workspace/1.avif"
+                alt="Workspace Main"
+                class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+              />
+            </div>
+          </div>
+
+          <!-- Side Images -->
+          <div class="aspect-4/3">
+            <img
+              data-hero-side-1
+              src="/images/workspace/2.avif"
+              alt="Workspace View"
+              class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+            />
+          </div>
+
+          <div class="aspect-4/3">
+            <img
+              data-hero-side-2
+              src="/images/workspace/3.avif"
+              alt="Workspace Amenities"
+              class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+            />
+          </div>
+
+          <div class="aspect-4/3 col-span-1 md:col-span-1">
+            <img
+              data-hero-side-3
+              src="/images/workspace/4.avif"
+              alt="Workspace Detail"
+              class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+            />
+          </div>
+
+          <div class="aspect-4/3 col-span-1 md:col-span-1">
+            <img
+              data-hero-side-4
+              src="/images/workspace/5.avif"
+              alt="Lounge Area"
+              class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Content Section -->
+    <section class="lg:py-15 md:py-22.5 py-15">
+      <div class="container-full">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-12.5">
+          <!-- Left Column: Details -->
+          <div class="lg:col-span-2">
+            <!-- Header -->
+            <div class="mb-12.5">
+              <div
+                class="flex flex-col md:flex-row md:items-center md:justify-between gap-5 mb-7.5"
+              >
+                <div>
+                  <h1
+                    data-workspace-title
+                    class="text-4xl md:text-5xl lg:text-[76px] font-bold text-default-900 mb-2.5"
+                  >
+                    Office Spaces
+                  </h1>
+                  <p data-workspace-subtitle class="text-lg text-default-600">
+                    Premium workspace in the heart of Jakarta
+                  </p>
+                </div>
+                <div class="flex items-center gap-2">
+                  <!-- <div class="flex text-primary-3">
+                    <i class="iconify lucide--star size-5"></i>
+                    <i class="iconify lucide--star size-5"></i>
+                    <i class="iconify lucide--star size-5"></i>
+                    <i class="iconify lucide--star size-5"></i>
+                    <i class="iconify lucide--star size-5"></i>
+                  </div> -->
+                  <!-- <span
+                    data-workspace-reviews
+                    class="text-default-600 text-lg font-normal"
+                    >(128 reviews)</span
+                  > -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Description -->
+            <div class="mb-12.5 pb-12.5 border-b border-default-200">
+              <h3 class="text-2xl font-bold text-default-900 mb-5">
+                About this workspace
+              </h3>
+              <p
+                data-workspace-description
+                class="text-default-600 text-lg leading-relaxed mb-5"
+              >
+                Our premium office spaces are designed for professionals and
+                growing teams who demand excellence. Each workspace is
+                thoughtfully designed with modern aesthetics and cutting-edge
+                technology to ensure maximum productivity and comfort.
+              </p>
+              <p
+                data-workspace-description-2
+                class="text-default-600 text-lg leading-relaxed"
+              >
+                Located in a prime business district with easy access to public
+                transportation, dining, and entertainment options. Perfect for
+                companies looking to establish a strong market presence.
+              </p>
+            </div>
+
+            <!-- Highlights -->
+            <div class="mb-12.5 pb-12.5 border-b border-default-200">
+              <h3 class="text-2xl font-bold text-default-900 mb-7.5">
+                Key Features
+              </h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-7.5">
+                <div class="flex gap-3.5">
+                  <div class="size-1.5 bg-primary-3 mt-2.5 shrink-0"></div>
+                  <div>
+                    <h4 class="font-bold text-default-900 mb-1.25">
+                      Dedicated Workspace
+                    </h4>
+                    <p class="text-default-600">
+                      Your own private office with customizable layout
+                    </p>
+                  </div>
+                </div>
+
+                <div class="flex gap-3.5">
+                  <div class="size-1.5 bg-primary-3 mt-2.5 shrink-0"></div>
+                  <div>
+                    <h4 class="font-bold text-default-900 mb-1.25">
+                      High-Speed Internet
+                    </h4>
+                    <p class="text-default-600">
+                      Gigabit-speed connectivity for seamless work
+                    </p>
+                  </div>
+                </div>
+
+                <div class="flex gap-3.5">
+                  <div class="size-1.5 bg-primary-3 mt-2.5 shrink-0"></div>
+                  <div>
+                    <h4 class="font-bold text-default-900 mb-1.25">
+                      Meeting Rooms
+                    </h4>
+                    <p class="text-default-600">
+                      Fully equipped conference rooms for client meetings
+                    </p>
+                  </div>
+                </div>
+
+                <div class="flex gap-3.5">
+                  <div class="size-1.5 bg-primary-3 mt-2.5 shrink-0"></div>
+                  <div>
+                    <h4 class="font-bold text-default-900 mb-1.25">
+                      24/7 Access
+                    </h4>
+                    <p class="text-default-600">
+                      Round-the-clock access with secure entry
+                    </p>
+                  </div>
+                </div>
+
+                <div class="flex gap-3.5">
+                  <div class="size-1.5 bg-primary-3 mt-2.5 shrink-0"></div>
+                  <div>
+                    <h4 class="font-bold text-default-900 mb-1.25">
+                      Business Services
+                    </h4>
+                    <p class="text-default-600">
+                      Mail handling, printing, and administrative support
+                    </p>
+                  </div>
+                </div>
+
+                <div class="flex gap-3.5">
+                  <div class="size-1.5 bg-primary-3 mt-2.5 shrink-0"></div>
+                  <div>
+                    <h4 class="font-bold text-default-900 mb-1.25">
+                      Community Events
+                    </h4>
+                    <p class="text-default-600">
+                      Networking opportunities and social gatherings
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Amenities -->
+            <div>
+              <h3 class="text-2xl font-bold text-default-900 mb-7.5">
+                Amenities
+              </h3>
+              <div class="grid grid-cols-2 md:grid-cols-3 gap-5">
+                <div class="flex items-center gap-3">
+                  <i class="iconify lucide--wifi text-primary-3 size-6"></i>
+                  <span class="text-default-600">Free WiFi</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <i class="iconify lucide--coffee text-primary-3 size-6"></i>
+                  <span class="text-default-600">Coffee & Tea</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <i class="iconify lucide--utensils text-primary-3 size-6"></i>
+                  <span class="text-default-600">Kitchen</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <i class="iconify lucide--car text-primary-3 size-6"></i>
+                  <span class="text-default-600">Parking</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <i class="iconify lucide--tv text-primary-3 size-6"></i>
+                  <span class="text-default-600">Video Conference</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <i class="iconify lucide--lock text-primary-3 size-6"></i>
+                  <span class="text-default-600">Security</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Booking -->
+          <div class="lg:col-span-1">
+            <!-- Pricing Card -->
+            <div class="bg-default-100 p-6 lg:p-7.5 sticky top-20">
+              <div class="mb-7.5 pb-7.5 border-b border-default-200">
+                <div class="flex items-baseline gap-2 mb-2.5">
+                  <span
+                    data-workspace-price
+                    class="text-5xl font-bold text-default-900"
+                    >$350</span
+                  >
+                  <span data-workspace-period class="text-lg text-default-600"
+                    >/month</span
+                  >
+                </div>
+                <p class="text-default-600">Billed monthly, cancel anytime</p>
+              </div>
+
+              <!-- CTA Buttons -->
+              <div class="space-y-3.5 mb-7.5">
+                <a
+                  href="#"
+                  class="block w-full bg-primary-4 hover:bg-primary-3 text-black font-bold py-3.5 px-5 transition-all text-center"
+                >
+                  Book Now
+                </a>
+                <a
+                  href="#"
+                  class="block w-full bg-white hover:bg-default-50 text-black font-bold py-3.5 px-5 border border-default-200 transition-all text-center"
+                >
+                  Schedule Tour
+                </a>
+              </div>
+
+              <!-- Features List -->
+              <div class="space-y-3">
+                <p class="font-bold text-default-900 mb-3.5">
+                  What's included:
+                </p>
+                <div class="flex items-start gap-2.5">
+                  <span class="size-1.5 bg-primary-3 mt-2 shrink-0"></span>
+                  <span class="text-sm text-default-600"
+                    >Private office space (100-200 sqft)</span
+                  >
+                </div>
+                <div class="flex items-start gap-2.5">
+                  <span class="size-1.5 bg-primary-3 mt-2 shrink-0"></span>
+                  <span class="text-sm text-default-600"
+                    >24/7 access & security</span
+                  >
+                </div>
+                <div class="flex items-start gap-2.5">
+                  <span class="size-1.5 bg-primary-3 mt-2 shrink-0"></span>
+                  <span class="text-sm text-default-600"
+                    >Unlimited meeting room hours</span
+                  >
+                </div>
+                <div class="flex items-start gap-2.5">
+                  <span class="size-1.5 bg-primary-3 mt-2 shrink-0"></span>
+                  <span class="text-sm text-default-600"
+                    >Personal locker & mail</span
+                  >
+                </div>
+                <div class="flex items-start gap-2.5">
+                  <span class="size-1.5 bg-primary-3 mt-2 shrink-0"></span>
+                  <span class="text-sm text-default-600"
+                    >Admin & IT support</span
+                  >
+                </div>
+              </div>
+
+              <!-- Contact Info -->
+              <div class="mt-7.5 pt-7.5 border-t border-default-200">
+                <p class="text-sm text-default-600 mb-3.5">
+                  Questions? Contact us:
+                </p>
+                <a
+                  href="tel:+1234567890"
+                  class="text-primary-3 font-bold hover:underline block mb-2"
+                >
+                  +123-456-7890
+                </a>
+                <a
+                  href="mailto:info@loophaus.id"
+                  class="text-primary-3 font-bold hover:underline"
+                >
+                  info@loophaus.id
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Similar Workspaces -->
+    <section class="lg:py-15 md:py-22.5 py-15 bg-default-50">
+      <div class="container-full">
+        <h2
+          class="text-4xl md:text-5xl lg:text-[76px] font-bold text-default-900 mb-12.5"
+        >
+          Similar Workspaces
+        </h2>
+
+        <div
+          data-similar-container
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7.5"
+        >
+          <!-- Cards will be dynamically generated -->
+        </div>
+      </div>
+    </section>
+
+    {{> footer }}
+  </body>
+</html>
